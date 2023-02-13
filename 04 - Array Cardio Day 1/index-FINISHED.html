@@ -45,7 +45,7 @@
     // Array.prototype.map()
     // 2. Give us an array of the inventor first and last names
     const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
-    console.log(fullNames);
+    console.table(fullNames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
@@ -66,7 +66,7 @@
       return total + (inventor.passed - inventor.year);
     }, 0);
 
-    console.log(totalYears);
+    console.table(totalYears);
 
     // 5. Sort the inventors by years lived
     const oldest = inventors.sort(function(a, b) {
@@ -92,7 +92,7 @@
       const [bLast, bFirst] = nextOne.split(', ');
       return aLast > bLast ? 1 : -1;
     });
-    console.log(alpha);
+    console.table(alpha);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
@@ -106,7 +106,7 @@
       return obj;
     }, {});
 
-    console.log(transportation);
+    console.table(transportation);
 
   </script>
 </body>

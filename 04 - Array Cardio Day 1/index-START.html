@@ -28,6 +28,10 @@
       { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
     ];
 
+    inventors.forEach(inventor => {
+      inventor.edge = inventor.passed - inventor.year
+    });
+
     const people = [
       'Bernhard, Sandra', 'Bethea, Erin', 'Becker, Carl', 'Bentsen, Lloyd', 'Beckett, Samuel', 'Blake, William', 'Berger, Ric', 'Beddoes, Mick', 'Beethoven, Ludwig',
       'Belloc, Hilaire', 'Begin, Menachem', 'Bellow, Saul', 'Benchley, Robert', 'Blair, Robert', 'Benenson, Peter', 'Benjamin, Walter', 'Berlin, Irving',
@@ -38,29 +42,77 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const fifteen = inventors.filter(inventor => (inventor.year >= 1500 && inventor.year < 1600))
 
+    console.log(fifteen);
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
+    const fullName = inventors.map(inventor => `${inventor.first} ${inventor.last}`)
+    
+    console.log(fullName);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const sortYear = inventors.sort((a, b) => a.year - b.year)
+    console.log(sortYear);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
+    const totalYears = inventors.reduce((total, inventor) => {
+      return total + inventor.passed - inventor.year
+    }, 0)
+
+    console.log(totalYears);
 
     // 5. Sort the inventors by years lived
+
+    const sortEdge = inventors.sort((a, b) => (b.passed - b.year) - (a.passed - a.year))
+    
+    // console.table(sortEdge);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
 
+
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+
+    let ans = people.sort((a, b) => {
+      let [aFirst, aLast] = a.split(', ')
+      let [bFirst, bLast] = b.split(', ')
+      // console.log(aFirst, aLast);
+      // console.log(bFirst, bLast);
+
+      return aLast[0] > bLast[0] ? 1 : bLast[0] > aLast[0] ? -1 : 0 
+    })
+
+    // console.table(ans);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+    const sum = data.reduce((obj, content) => {
+      if(!obj[content]) {
+        obj[content] = 0
+      } 
+      
+      obj[content] += 1
+
+      return obj
+    }, {})
+
+    console.table(sum);
+
+    const array = ['a,c', 'a, b', 'a,  b']
+    array.sort((a, b) => {
+      let [aFirst, aSecond] = a.split(',')
+      let [bFirst, bSecond] = b.split(',')
+      console.log(aFirst, aSecond, bFirst, bSecond);
+
+      return a - b
+    })
   </script>
 </body>
 </html>
