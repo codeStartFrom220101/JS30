@@ -59,44 +59,75 @@
   -->
   <div class="inbox">
     <div class="item">
-      <input type="checkbox">
+      <input class="check" type="checkbox">
       <p>This is an inbox layout.</p>
     </div>
     <div class="item">
-      <input type="checkbox">
+      <input class="check" type="checkbox">
       <p>Check one item</p>
     </div>
     <div class="item">
-      <input type="checkbox">
+      <input class="check" type="checkbox">
       <p>Hold down your Shift key</p>
     </div>
     <div class="item">
-      <input type="checkbox">
+      <input class="check" type="checkbox">
       <p>Check a lower item</p>
     </div>
     <div class="item">
-      <input type="checkbox">
+      <input class="check" type="checkbox">
       <p>Everything in between should also be set to checked</p>
     </div>
     <div class="item">
-      <input type="checkbox">
+      <input class="check" type="checkbox">
       <p>Try to do it without any libraries</p>
     </div>
     <div class="item">
-      <input type="checkbox">
+      <input class="check" type="checkbox">
       <p>Just regular JavaScript</p>
     </div>
     <div class="item">
-      <input type="checkbox">
+      <input class="check" type="checkbox">
       <p>Good Luck!</p>
     </div>
     <div class="item">
-      <input type="checkbox">
+      <input class="check" type="checkbox">
       <p>Don't forget to tweet your result!</p>
     </div>
   </div>
 
 <script>
+;(function () {
+const checkboxes = document.querySelectorAll('.check');
+
+let lastCheck
+
+function checkedHandler(e) {
+  
+  let inBetween = false
+  if (this.checked && e.shiftKey) {
+    checkboxes.forEach(checkbox => {
+      console.log(checkbox);
+      if (checkbox === this || checkbox === lastCheck) {
+        inBetween = !inBetween
+
+      }
+      if (inBetween) {
+        checkbox.checked = true
+      }
+
+    })
+  }
+
+
+  lastCheck = this
+}
+
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener('click', checkedHandler)
+})
+
+})();
 </script>
 </body>
 </html>

@@ -18,10 +18,22 @@
       p.style.fontSize = '50px';
     }
 
+    let a = {
+      isDev: true,
+      log(...arg) {
+        if (!this.isDev) return;
+        window.console.log(...arg)
+      },
+      dir(...arg) {
+        if (!this.isDev) return;
+        window.console.dir(...arg)
+      }
+    }
+
     // Regular
-
+    a.log('123')
     // Interpolated
-
+    
     // Styled
 
     // warning!
@@ -35,7 +47,8 @@
     // clearing
 
     // Viewing DOM Elements
-
+    const p = document.querySelector('p');
+    a.dir(p)
     // Grouping together
 
     // counting
